@@ -346,3 +346,4 @@ obj
 bin/
 obj/
 
+/*.db
