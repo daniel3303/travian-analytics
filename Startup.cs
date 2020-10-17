@@ -159,6 +159,7 @@ namespace TravianAnalytics {
             // Configures the Identity by cookie
             services.ConfigureApplicationCookie(options => {
                 options.ExpireTimeSpan = cookieTime;
+                options.Cookie.Name = "AuthCookie";
                 options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.Events = new CookieAuthenticationEvents {
