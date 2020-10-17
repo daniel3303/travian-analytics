@@ -159,7 +159,6 @@ namespace TravianAnalytics {
             // Configures the Identity by cookie
             services.ConfigureApplicationCookie(options => {
                 options.ExpireTimeSpan = cookieTime;
-                options.Cookie.Name = "AuthCookie";
                 options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.Events = new CookieAuthenticationEvents {
@@ -219,15 +218,6 @@ namespace TravianAnalytics {
                 options.ModelBindingMessageProvider.SetValueMustBeANumberAccessor(x => "O valor inserido deve ser numérico.");
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(x => "O valor não pode ser vazio.");
             }).AddDataAnnotationsLocalization().AddViewLocalization();
-            
-            // IIS & forms
-            services.Configure<IISServerOptions>(options => {
-                options.MaxRequestBodySize = 30*1024*1024;
-            });
-            services.Configure<FormOptions>(options => {
-                options.ValueLengthLimit = 30*1024*1024;
-                options.MultipartBodyLengthLimit = 30*1024*1024;
-            });
 
             // Routes
             services.AddRouting();
