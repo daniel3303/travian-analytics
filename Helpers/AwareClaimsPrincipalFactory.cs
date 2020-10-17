@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -22,6 +23,7 @@ namespace TravianAnalytics.Helpers {
 
             // If the user is an Employee
             if (user.Master) {
+                Console.WriteLine("here");
                 identity.AddClaim(ClaimStore.MasterClaim);
                 foreach (var claim in ClaimStore.ClaimList()
                     .Where(claim => !identity.HasClaim(c => c.Value == claim.Value))) {

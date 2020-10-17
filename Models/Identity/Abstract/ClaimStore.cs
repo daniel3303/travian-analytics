@@ -13,6 +13,12 @@ namespace TravianAnalytics.Models.Identity.Abstract {
                     //new ApplicationClaim("CronJobs", "Master", "Tarefas Agendadas")
                 }
             ),
+            
+            new ApplicationClaimGroup("Administração",
+                new[] {
+                    new ApplicationClaim("Users", "Users", "Utilizadores"),
+                }
+            ),
             new ApplicationClaimGroup("A minha conta",
                 new[] {
                     new ApplicationClaim("ChangePassword", "", "Alterar Password"),

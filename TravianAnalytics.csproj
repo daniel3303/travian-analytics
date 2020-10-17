@@ -41,21 +41,5 @@
     <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\CronJobSubscribers" />
-    <Folder Include="Services\EventHandlers" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Notifications\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\SalesMap\Import.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\SalesMap\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\SendNotifications\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Account\Notifications\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Shared\Media\File.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Shared\Media\Repo.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Account\Settings\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\ChangesHistories\Show.cshtml" />
-  </ItemGroup>
 
 </Project>

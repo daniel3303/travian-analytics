@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravianAnalytics.Controllers.Abstract;
@@ -7,6 +8,7 @@ using TravianAnalytics.Data;
 
 namespace TravianAnalytics.Controllers {
 
+    [Authorize(Policy = "Alliances")]
     public class AlliancesController : BaseController {
         public AlliancesController(ApplicationDbContext dbContext) : base(dbContext) { }
         
