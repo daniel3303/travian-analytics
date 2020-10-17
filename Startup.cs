@@ -117,7 +117,7 @@ namespace TravianAnalytics {
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.Cookie.Name = "SessionCookie";
-                options.Cookie.Domain = cookieDomain;
+                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.IdleTimeout = cookieTime;
 
@@ -144,7 +144,7 @@ namespace TravianAnalytics {
                 options.SuppressXFrameOptionsHeader = false;
                 options.Cookie.Name = "AntiForgeryCookie";
                 options.Cookie.Expiration = cookieTime;
-                options.Cookie.Domain = cookieDomain;
+                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
             });
 
@@ -152,7 +152,7 @@ namespace TravianAnalytics {
             services.Configure<CookieTempDataProviderOptions>(options => {
                 options.Cookie.Name = "TempDataCookie";
                 options.Cookie.Expiration = cookieTime;
-                options.Cookie.Domain = cookieDomain;
+                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
             });
 
@@ -160,7 +160,7 @@ namespace TravianAnalytics {
             services.ConfigureApplicationCookie(options => {
                 options.ExpireTimeSpan = cookieTime;
                 options.Cookie.Name = "AuthCookie";
-                options.Cookie.Domain = cookieDomain;
+                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.Events = new CookieAuthenticationEvents {
                     OnRedirectToLogin = ctx => {
