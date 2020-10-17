@@ -9,7 +9,7 @@
 @(Html
     .Grid(Model)
     .Build(columns => {
-        columns.Add(model => model.Time.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Data");
+        columns.Add(model => model.Time.ToString("dd-MM-yyyy HH:mm")+"h").Titled("Data");
         columns.Add(model => model.Message).Titled("Evento");
     })
     .Using(GridFilterMode.Excel)
