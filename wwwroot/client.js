@@ -54,7 +54,8 @@ const run = async () => {
     }
 
     if(lastRun + REPORT_INTERVAL > time()){
-        console.log("Ignoring. Last report too recent.");
+        let nextReportTime = new Date((lastRun + REPORT_INTERVAL) * 1000);
+        console.log("Ignoring. Last report too recent. Next report to be sent on "+nextReportTime);
         return;
     }
 
