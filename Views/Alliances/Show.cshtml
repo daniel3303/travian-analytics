@@ -29,4 +29,4 @@
     .Using(GridFilterMode.Excel)
     .Empty("Nenhum jogador encontrado.")
     .Sortable()
-    .Pageable())
+    .Pageable(pager => pager.RowsPerPage = 60))

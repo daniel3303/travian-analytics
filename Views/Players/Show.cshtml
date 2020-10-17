@@ -22,4 +22,4 @@
     .Using(GridFilterMode.Excel)
     .Empty("Nenhum dado encontrado.")
     .Sortable()
-    .Pageable())
+    .Pageable(pager => pager.RowsPerPage = 60))

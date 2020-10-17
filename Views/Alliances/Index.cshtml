@@ -13,4 +13,4 @@
     .Using(GridFilterMode.Excel)
     .Empty("Nenhuma aliança encontrada.")
     .Sortable()
-    .Pageable())
+    .Pageable(pager => pager.RowsPerPage = 60))
