@@ -1,0 +1,35 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $this = $("#Contact");
+        var options = {
+            language: "pt",
+            placeholder: "",
+            width: "resolve",
+            allowClear: false,
+            matcher: matchAllWords,
+            minimumInputLength: 0,
+            dropdownParent: $this.parent(),
+            ajax: {
+                url: '/api/contacts/list',
+                dataType: 'json',
+                data: function (params) {
+                    return { s: params.term };
+                },
+                processResults: function (data, params) {
+                    return { results: data };
+                },
+                cache: true
+            }
+        };
+        $this
+        .select2(options)
+        .on('select2:select', function (e) {
+            if ($("#PHCNoEstab").length)
+                $("#PHCNoEstab").val(null).trigger('change');
+        }).on("select2:open", function(e){
+            $(e.target).siblings(".select2-container").find(".select2-search__field").addClass("form-control");
+        });
+        $this.siblings(".select2").addClass("form-control");
+    });
+</script>

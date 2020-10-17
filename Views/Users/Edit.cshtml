@@ -1,0 +1,80 @@
+@using TravianAnalytics.Models.Identity.Abstract
+@model TravianAnalytics.Dtos.Identity.UserForEditDto
+
+@{
+    var userModel = ((User)ViewData["userModel"]);
+
+    ViewData["Title"] = "Utilizador";
+}
+
+<form asp-action="Edit">
+    <div class="card">
+        <div class="card-header h5">Dados do utilizador</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="Email">E-mail</label>
+                        <input class="form-control readonly" readonly="readonly" value="@userModel.Email" id="Email" />
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="Name">Nome</label>
+                        <input class="form-control readonly" readonly="readonly" value="@userModel.Name" id="Name" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header h5">Definir Password</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 pb-3">
+                    Password de conta local <small>(caso a autenticação na sua conta microsoft esteja em baixo)</small>.
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Password">Nova password</label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label asp-for="RepeatPassword">Repetir nova password</label>
+                        <input asp-for="RepeatPassword" class="form-control" />
+                        <span asp-validation-for="RepeatPassword" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header h5">Permissões</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12">
+                    @{
+                        var group = "";
+                        for (var i = 0; i < Model.UserClaims.Where(uc => uc.Type != "").ToList().Count; i++) {
+                            if (group != Model.UserClaims[i].Group) {
+                                group = Model.UserClaims[i].Group;
+                                <div class="form-group mt-2"><div>@group</div></div>
+                            }
+                            <div class="form-group form-check form-check-inline">
+                                <input type="hidden" asp-for="@Model.UserClaims[i].Group" />
+                                <input type="hidden" asp-for="@Model.UserClaims[i].Name" />
+                                <input type="hidden" asp-for="@Model.UserClaims[i].Type" />
+                                <input asp-for="@Model.UserClaims[i].Enabled" />
+                                <label asp-for="@Model.UserClaims[i].Enabled">@Model.UserClaims[i].Name</label>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="Form/ActionButtons" />
+</form>

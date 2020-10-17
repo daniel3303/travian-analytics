@@ -1,0 +1,43 @@
+﻿@model TravianAnalytics.Dtos.Identity.ChangePasswordDto
+
+@{
+    ViewData["Title"] = "Alterar Password";
+}
+
+<form asp-action="Index" asp-controller="ChangePassword">
+    <div class="card">
+        <div class="card-header h5">Alterar Password</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="CurrentPassword">Password Atual</label>
+                        <input type="password" class="form-control" id="CurrentPassword" asp-for="CurrentPassword" />
+                        <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="NewPassword">Nova Password</label>
+                        <input type="password" class="form-control" id="NewPassword" asp-for="NewPassword" />
+                        <span asp-validation-for="NewPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="form-group">
+                        <label for="ConfirmPassword">Confirmar Password</label>
+                        <input type="password" class="form-control" id="ConfirmPassword" asp-for="ConfirmPassword" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row form-submit">
+        <div class="col-12 col-md-4">
+            <button class="btn btn-primary btn-block" type="submit">Alterar</button>
+        </div>
+    </div>
+</form>

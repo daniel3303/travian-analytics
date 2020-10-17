@@ -1,0 +1,34 @@
+﻿
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $this = $("#Project");
+        var options = {
+            language: "pt",
+            placeholder: "",
+            width: "resolve",
+            allowClear: false,
+            matcher: matchAllWords,
+            minimumInputLength: 0,
+            dropdownParent: $this.parent(),
+            ajax: {
+                url: '/api/projects/list',
+                dataType: 'json',
+                data: function (params) {
+                    var contact = $("#Contact").val();
+                    var client = $("#PHCNoEstab").val();
+                    return { s: params.term, contact: contact, client: client };
+                },
+                processResults: function (data, params) {
+                    return { results: data };
+                },
+                cache: true
+            }
+        };
+        $this
+            .select2(options)
+            .on("select2:open", function(e){
+                $(e.target).siblings(".select2-container").find(".select2-search__field").addClass("form-control");
+            });;
+        $this.siblings(".select2").addClass("form-control");
+    });
+</script>

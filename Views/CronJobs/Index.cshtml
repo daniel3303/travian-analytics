@@ -1,0 +1,36 @@
+@using NonFactors.Mvc.Grid
+@using TravianAnalytics.Services.Contracts.CronJobs
+@model IQueryable<TravianAnalytics.Models.CronJob.CronJob>
+
+@{
+    ViewData["Title"] = "Tarefas Agendadas";
+    var cronJobSubscribers = (IList<ICronJobSubscriber>) ViewData["CronJobSubscribers"];
+}
+
+<h4>Serviços registados</h4>
+
+@(Html
+    .Grid(cronJobSubscribers)
+    .Build(columns => {
+        columns.Add(m => m.GetType().Name).RenderedAs(m => m.GetType().Name).Titled("Serviço");
+        columns.Add(m => m.GetMinimumIntervalBetweenExecutions()).RenderedAs(m => m.GetMinimumIntervalBetweenExecutions().ToString("c")).Titled("Intervalo");
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum resultado encontrado.")
+    .Sortable())
+
+<hr />
+<h4>Últimas execuções</h4>
+
+@(Html
+    .Grid(Model)
+    .Build(columns => {
+        columns.Add(m => m.Service).RenderedAs(m => m.Service.Split(".").LastOrDefault()).Titled("Serviço");
+        columns.Add(m => m.ExecutionTime).RenderedAs(m => m.ExecutionTime.ToString("dd-MM-yyyy HH:mm:ss")).Titled("Execução");
+        columns.Add(m => m.Success).RenderedAs(m => m.Success ? "Sucesso" : "Erro").Titled("Resultado");
+        columns.Add(m => m.Output).Titled("Mensagem de erro");
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum resultado encontrado.")
+    .Sortable()
+    .Pageable())

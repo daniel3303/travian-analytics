@@ -1,0 +1,80 @@
+﻿@import "_Variables.less";
+
+@-webkit-viewport {
+    width: device-width;
+}
+
+@-moz-viewport {
+    width: device-width;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+* {
+    outline: 0 !important;
+}
+
+img {
+    vertical-align: top;
+}
+
+i.fa {
+    line-height: inherit;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+.unselectable {
+    .disableSelect();
+    cursor: default;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+}
+
+.w-1 {
+    width: 1px;
+}
+
+.disableSelect() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.round-borders (@radius) {
+    border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+}

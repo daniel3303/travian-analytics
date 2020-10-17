@@ -1,0 +1,40 @@
+﻿@using TravianAnalytics.Data
+@using TravianAnalytics.Extensions
+@using TravianAnalytics.Models.Identity.Abstract
+@using TravianAnalytics.Services
+@inject ApplicationDbContext DbContext
+@inject IAuthorizationService AuthorizationService
+@inject ConfigurationsService ConfigurationsService
+
+
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var selectedClaimParent = ClaimStore.ClaimGroups().Find(c => c.Claims.Any(s => s.ControllerName.Equals(controller)));
+    var selectedClaimParentName = selectedClaimParent?.Name ?? "";
+    var selectedClaimName = selectedClaimParent?.Claims.FirstOrDefault(s => s.ControllerName.Equals(controller))?.Name ?? "";
+}
+
+<div class="sidebar-container">
+    <div class="sidebar">
+        <aside class="accordion" id="sidebarAccordion">
+            @foreach (var (claimGroup, i) in ClaimStore.ClaimGroups().WithIndex()) {
+                if (User.Claims.Any(t => claimGroup.Claims.Any(c => c.Type == t.Type || c.Type == ""))) {
+                    <div class="sidebarMenu border-bottom rounded-0">
+                        <a href="#" class="btn btn-link  @(selectedClaimParentName == claimGroup.Name ? "" : " collapsed")" type="button" data-toggle="collapse" data-target="@("#sidebar" + i)" aria-expanded="@(selectedClaimParentName == claimGroup.Name ? "true" : "false")" aria-controls="@("sidebar" + i)" id="@("sidebarHeading" + i)">
+                            @await claimGroup.GetComputedName(Context.RequestServices)
+                        </a>
+                        <div id="@("sidebar" + i)" class="sidebarSubMenus collapse position-relative @(selectedClaimParentName == claimGroup.Name ? " show" : "")" aria-labelledby="@("sidebarHeading" + i)" data-parent="#sidebarAccordion">
+                            @foreach (var claim in claimGroup.Claims) {
+                                @if ((await AuthorizationService.AuthorizeAsync(User, claim.Type)).Succeeded || claim.Type == "") {
+                                    <a class="btn btn-link @(claim.Name == selectedClaimName ? "selected" : "")" asp-controller="@claim.ControllerName" asp-action="Index">
+                                        @await claim.GetComputedName(Context.RequestServices)
+                                    </a>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </aside>
+    </div>
+</div>

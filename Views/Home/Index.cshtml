@@ -1,0 +1,18 @@
+﻿@using NonFactors.Mvc.Grid
+@model IQueryable<Notification>
+
+@{
+    ViewData["TitleInBanner"] = true;
+    ViewData["Title"] = "Últimos Eventos";
+}
+
+@(Html
+    .Grid(Model)
+    .Build(columns => {
+        columns.Add(model => model.Time.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Data");
+        columns.Add(model => model.Message).Titled("Evento");
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum evento encontrado.")
+    .Sortable()
+    .Pageable())

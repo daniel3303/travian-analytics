@@ -1,0 +1,9 @@
+﻿@using TravianAnalytics.Extensions
+@{
+    Layout = null;
+}
+<div class="form-submit">
+    <button class="btn btn-primary btn-block d-md-inline-block w-md-auto" type="submit">Guardar</button>
+    <button class="btn btn-primary btn-block d-md-inline-block w-md-auto" name="GoBack" type="submit">Guardar e voltar</button>
+    <a class="btn btn-outline-primary btn-block d-md-inline-block w-md-auto" href="@Context.Session.GetGoBackUrl()">Voltar</a>
+</div>

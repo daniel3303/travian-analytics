@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-Bomsite-2188382E-8563-4A95-BA00-E05697A97C16</UserSecretsId>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <AssemblyName>TravianAnalytics</AssemblyName>
+    <RootNamespace>TravianAnalytics</RootNamespace>
+    <PackageId>TravianAnalytics</PackageId>
+    <Authors>TravianAnalytics</Authors>
+    <Company>TravianAnalytics</Company>
+    <Product>TravianAnalytics</Product>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\**" />
+    <Content Remove="Data\Migrations\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
+    <None Remove="Data\Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="Humanizer.Core" Version="2.8.26" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0-rc.2.20475.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0-rc.2.20475.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.0-rc.2.20475.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.0-rc.2.20475.6" />
+    <PackageReference Include="NonFactors.Grid.Core.Mvc6" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\CronJobSubscribers" />
+    <Folder Include="Services\EventHandlers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Notifications\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\SalesMap\Import.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\SalesMap\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\SendNotifications\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Account\Notifications\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Media\File.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Shared\Media\Repo.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Account\Settings\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\ChangesHistories\Show.cshtml" />
+  </ItemGroup>
+
+</Project>

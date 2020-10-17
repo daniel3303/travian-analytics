@@ -1,0 +1,13 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@using TravianAnalytics.Extensions
+@using TravianAnalytics.Models.Identity.Abstract
+
+@inject UserManager<User> UserManager
+
+@{
+    Layout = "_Layout";
+    ViewBag.User = await UserManager.FindByIdAsync(User.GetUserId().ToString());
+}
+

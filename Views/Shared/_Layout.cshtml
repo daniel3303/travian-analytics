@@ -1,0 +1,108 @@
+﻿@using TravianAnalytics.Services
+@using TravianAnalytics.Models.Identity.Abstract
+@inject ConfigurationsService Configurations
+
+@{
+    var user = (User)ViewBag.User;
+
+    var pageTitle = "";
+    if (!string.IsNullOrEmpty(ViewData["Title"]?.ToString())) {
+        pageTitle = string.Concat(" - ", ViewData["Title"]?.ToString());
+    }
+    var titleInBanner = (bool?) ViewData["TitleInBanner"] ?? false;
+}
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-pt">
+<head lang="pt-pt">
+    <meta charset="utf-8" lang="pt-pt" />
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8" lang="pt-pt" />
+    <meta http-equiv="content-language" content="PT" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="shortcut icon" href="~/favicon/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="~/css/bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/icons/style.css" />
+    <title lang="pt-pt">@Configurations.Title @pageTitle</title>
+    <link rel="stylesheet" type="text/css" href="~/css/main.min.css"/>
+    @await RenderSectionAsync("Styles", required: false)
+    <link rel="stylesheet" href="~/css/messages-bottomright.min.css"/>
+</head>
+<body>
+    <header id="header" class="shadow-sm">
+        <div class="left d-none d-sm-flex">
+            <div class="container">
+                <h5>Área Reservada</h5>
+                <h4>Staff</h4>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-5 col-md-4 d-flex align-items-center">
+                        <i class="fas fa-bars fa-fw small cursor-pointer sidebar-toggle"></i>
+                        <a asp-action="Index" asp-controller="Home"><img class="logo" src="~/images/logo.png" /></a>
+                    </div>
+                    <div class="col-7 col-md-8 d-flex align-items-center justify-content-end">
+                        <div class="welcome">
+                            <span>Bem-vindo,  <strong>@user.Name</strong>!</span>
+                            <div class="user-badge">@user.SmallName</div>
+                        </div>
+                        <a class="icon" asp-controller="Auth" asp-action="Logout">
+                            <i class="icon icon-turn-off"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div class="content d-flex flex-wrap row-cols-1">
+        <main class="position-relative">
+            @if (titleInBanner) {
+                <div class="title-banner">
+                    <h1>@ViewData["Title"]</h1>
+                </div>
+            } else {
+                var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+                var claimGroup = ClaimStore.ClaimGroups().Find(c => c.Claims.Any(s => s.ControllerName.Equals(controller)));
+                var claim = claimGroup?.Claims.FirstOrDefault(s => s.ControllerName.Equals(controller));
+                if (claim != null) {
+                    <div class="title">
+                        <h1>
+                            @claimGroup?.Name
+                            <span class="separator">|</span>
+                            <a asp-controller="@claim?.ControllerName" asp-action="Index" class="active">@claim?.Name</a>
+                        </h1>
+                    </div>
+                }
+            }
+            @RenderBody()
+        </main>
+        
+
+        <footer class="mt-auto pt-4">
+            <div class="row small text-muted">
+                <div class="col-6">
+                    Versão @Configurations.Version
+                </div>
+                <div class="col-6 text-right">
+                    © TravianAnalytics
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <partial name="_Sidebar" />
+    <partial name="_Scripts" />
+@await RenderSectionAsync("Scripts", required: false)
+    <partial name="_Modals" />
+    <partial name="_FlashMessages" />
+
+</body>
+</html>

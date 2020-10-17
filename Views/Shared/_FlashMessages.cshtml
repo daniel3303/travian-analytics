@@ -1,0 +1,10 @@
+﻿@using TravianAnalytics.Services.Contracts.FlashMessage
+@using TravianAnalytics.Extensions
+@inject IFlashMessage FlashMessage
+
+
+<script type="text/javascript">
+@foreach (var message in FlashMessage.Retrieve()) {
+    @Html.Raw("showMessage(\""+message.Message+"\", \""+message.Type.NameForHumans()+"\");")
+}
+</script>

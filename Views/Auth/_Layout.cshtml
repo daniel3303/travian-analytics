@@ -1,0 +1,54 @@
+﻿@using TravianAnalytics.Services
+@using TravianAnalytics.Models.Identity.Abstract
+@inject ConfigurationsService Configurations
+@{
+    var user = (User) ViewBag.User;
+
+    var pageTitle = "";
+    if (!string.IsNullOrEmpty(ViewData["Title"]?.ToString())) {
+        pageTitle = string.Concat(" - ", ViewData["Title"]?.ToString());
+    }
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-pt">
+    <head>
+        <meta charset="utf-8" lang="pt-pt"/>
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" lang="pt-pt"/>
+        <meta http-equiv="content-language" content="PT"/>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="HandheldFriendly" content="true"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+        <link rel="shortcut icon" href="~/favicon/favicon.ico"/>
+        <title lang="pt-pt">@Configurations.Title @pageTitle</title>
+        <link rel="stylesheet" type="text/css" href="~/css/bundle.min.css"/>
+        <link rel="stylesheet" type="text/css" href="~/css/auth.min.css"/>
+    </head>
+    <body>
+        <div class="container-fluid" id="wrapper">
+            <div class="row">
+                <div class="col-md-6 col-lg-8 col-xl-9 image">
+                    <h3>Honour & Loyalty</h3>
+                </div>
+                <div class="col-md-6 col-lg-4 col-xl-3 content">
+                    @RenderBody()
+
+                    <div class="container footer">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Vencedores PT3 2018/2019</p>
+                                <p class="iveco">H&L</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <partial name="_Scripts"/>
+        <partial name="_FlashMessages"/>
+    </body>
+</html>

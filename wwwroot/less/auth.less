@@ -1,0 +1,161 @@
+﻿@import "_utils.less";
+@import "_variables.less";
+@import "messages.less";
+
+body, html{
+    min-height: 100vh;
+}
+
+#wrapper {
+    min-height: 100vh;
+
+    > .row {
+        min-height: 100vh;
+    }
+
+    .image {
+        @media (max-width: 767.98px) {
+            display: none;
+        }
+
+        background-image: url('../images/login-background.jpg');
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding: 24px 32px;
+
+        > h3{
+            font-style: italic;
+            color: white;
+            text-transform: uppercase;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-left: 48px;
+        padding-right: 48px;
+        background-color: #efefef;
+
+        > .container {
+            padding-top: 64px;
+            padding-bottom: 64px;
+
+            h2 {
+                color: #919191;
+                font-weight: 600;
+                font-size: 22px;
+                margin-top: 32px;
+                margin-bottom: 0;
+            }
+
+            h1 {
+                color: #18518e;
+                font-weight: 200;
+                font-size: 28px;
+                text-transform: uppercase;
+                margin-bottom: 24px;
+            }
+
+            .divider {
+                position: relative;
+                margin-top: 32px;
+                margin-bottom: 32px;
+                text-align: center;
+                font-size: 18px;
+
+                &::before {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    width: 64px;
+                    height: 1px;
+                    background-color: black;
+                }
+
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    width: 64px;
+                    height: 1px;
+                    background-color: black;
+                }
+            }
+        }
+
+        > .container.footer {
+            border-left: 1px solid #18518e;
+            padding-top: 32px;
+            padding-bottom: 0;
+            margin-bottom: 48px;
+
+            p {
+                margin-bottom: 0;
+                color: #18518e;
+
+                &.iveco {
+                    color: #18518e;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    font-size: 120%;
+                }
+            }
+        }
+    }
+}
+
+/* inputs */
+input {
+    &[type=email], &[type=text], &[type=password] {
+        &.form-control {
+            height: calc(1.5em + 1.5rem + 2px);
+            padding: .75rem .75rem;
+            border-radius: 0;
+            border-color: #bebebe;
+        }
+
+        &::-webkit-input-placeholder{
+            text-transform: lowercase;
+            color: #bebebe;
+        }
+    }
+}
+
+/* buttons */
+.btn {
+    &.btn-login {
+        border-color: #18518e;
+        border-radius: 0;
+        background-color: transparent;
+        text-transform: uppercase;
+        color: #18518e;
+        padding: 12px 24px;
+
+        &:hover {
+            background-color: #18518e;
+            color: white;
+        }
+    }
+
+    &.btn-microsoft {
+        border-color: #18518e;
+        border-radius: 0;
+        background-color: #18518e;
+        color: white;
+        padding: 12px 24px;
+    }
+}
+
+.loader{
+    display: none;
+}

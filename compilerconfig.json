@@ -1,0 +1,30 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/main.min.css",
+    "inputFile": "wwwroot/less/main.less"
+  },
+  {
+    "outputFile": "wwwroot/css/auth.min.css",
+    "inputFile": "wwwroot/less/auth.less"
+  },
+  {
+    "outputFile": "wwwroot/css/messages-bottomleft.min.css",
+    "inputFile": "wwwroot/less/messages-bottomleft.less"
+  },
+  {
+    "outputFile": "wwwroot/css/messages-topright.min.css",
+    "inputFile": "wwwroot/less/messages-topright.less"
+  },
+  {
+    "outputFile": "wwwroot/css/messages-topleft.min.css",
+    "inputFile": "wwwroot/less/messages-topleft.less"
+  },
+  {
+    "outputFile": "wwwroot/css/messages-bottomright.min.css",
+    "inputFile": "wwwroot/less/messages-bottomright.less"
+  },
+  {
+    "outputFile": "wwwroot/css/custom-bootstrap.min.css",
+    "inputFile": "wwwroot/scss/custom-bootstrap.scss"
+  }
+]

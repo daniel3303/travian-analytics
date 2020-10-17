@@ -1,0 +1,16 @@
+﻿@using NonFactors.Mvc.Grid
+@using TravianAnalytics.Extensions
+@model IQueryable<Alliance>
+
+@(Html
+    .Grid(Model)
+    .Build(columns => {
+        columns.Add(model => model.Name).Titled("Nome");
+        columns.Add(model => model.Players.Count).Titled("Jogadores");
+        columns.Add(model => model.LastUpdate.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Última Atualização");
+        columns.AddActions(b => b.AddShow());
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhuma aliança encontrada.")
+    .Sortable()
+    .Pageable())

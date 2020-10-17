@@ -1,0 +1,33 @@
+﻿@using NonFactors.Mvc.Grid
+@using TravianAnalytics.Extensions
+@using Humanizer
+@using System.Globalization
+@model TravianAnalytics.Models.Alliance
+
+<h4>Aliança: @Model.Name <small>(última atualização @Model.LastUpdate.ToString("dd-MM-yyyy hh:mm")h)</small></h4>
+
+@(Html
+    .Grid(Model.Players.OrderByDescending(p => p.Records.FirstOrDefault()?.Population))
+    .Build(columns => {
+        columns.Add(model => model.Name).Titled("Nome");
+        columns.Add(model => model.Records.OrderByDescending(r => r.Time).FirstOrDefault().Population).Titled("População");
+        columns.Add(model => model.Records.OrderByDescending(r => r.Time).FirstOrDefault().Villages).Titled("Aldeias");
+        columns.Add(model => model.Records.OrderByDescending(r => r.Time).FirstOrDefault().Online)
+            .RenderedAs(m => {
+                var online = m.Records.OrderByDescending(r => r.Time).FirstOrDefault()?.Online;
+                if (online ?? false) {
+                    return "<span class=\"badge badge-success\">Sim</span>";
+                }
+                var lastOnlineTime = m.Records.Where(r => r.Online).OrderByDescending(r => r.Time).FirstOrDefault()?.Time;
+                if (lastOnlineTime != null) {
+                    var lastOnlineSpan = DateTime.Now - lastOnlineTime.Value;
+                    return $"<span class=\"badge badge-danger\">Não</span> <small>visto à {lastOnlineSpan.Humanize()}</small>";
+                }
+                return "<span class=\"badge badge-danger\">Não</span>";
+            }).Encoded(false).Titled("Online");
+        columns.AddActions(b => b.AddShow("Show", "Players", new{b.Model.Id}));
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum jogador encontrado.")
+    .Sortable()
+    .Pageable())

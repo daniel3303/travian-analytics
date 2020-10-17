@@ -1,0 +1,26 @@
+﻿@using NonFactors.Mvc.Grid
+@using TravianAnalytics.Extensions
+@using Humanizer
+@using System.Globalization
+@model TravianAnalytics.Models.Player.Player
+
+<h4>Jogador: @Model.Name <small>(@Model.Alliance?.Name)</small></h4>
+
+@(Html
+    .Grid(Model.Records.OrderByDescending(r => r.Time))
+    .Build(columns => {
+        columns.Add(model => model.Time.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Data");
+        columns.Add(model => model.Population).Titled("População");
+        columns.Add(model => model.Villages).Titled("Aldeias");
+        columns.Add(model => model.Online)
+            .RenderedAs(m => {
+                if (m.Online) {
+                    return "<span class=\"badge badge-success\">Sim</span>";
+                }
+                return "<span class=\"badge badge-danger\">Não</span>";
+            }).Encoded(false).Titled("Online");
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum dado encontrado.")
+    .Sortable()
+    .Pageable())

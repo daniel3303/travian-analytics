@@ -1,0 +1,18 @@
+@using NonFactors.Mvc.Grid
+@using TravianAnalytics.Extensions
+@model IQueryable<TravianAnalytics.Models.Identity.Abstract.User>
+
+
+@(Html
+    .Grid(Model)
+    .Build(columns => {
+        columns.AddId();
+        columns.AddActivating();
+        columns.Add(model => model.Email).Titled("Email");
+        columns.Add(model => model.Name).Titled("Nome");
+        columns.AddActions(b => b.AddEdit());
+    })
+    .Using(GridFilterMode.Excel)
+    .Empty("Nenhum utilizador encontrado.")
+    .Sortable()
+    .Pageable())

@@ -1,0 +1,64 @@
+﻿@import "_variables.less";
+@import "_utils.less";
+
+/*DATEPICKER*/
+.datepicker,
+.datepicker td, .datepicker th,
+.datepicker table tr td span {
+    .round-borders(0);
+}
+
+.datepicker .datepicker-switch {
+    font-weight: 700
+}
+
+.datepicker *,
+.datepicker table tr td.new, .datepicker table tr td.old {
+    /*color: @TextColor;*/
+}
+
+.datepicker table tr td span.focused,
+.datepicker table tr td span:hover,
+.datepicker table tr td.day.focused,
+.datepicker table tr td.day:hover {
+    /*color: @TextColor;*/
+}
+
+.datepicker .datepicker-switch:hover, .datepicker .next:hover, .datepicker .prev:hover, .datepicker tfoot tr th:hover {
+}
+
+.datepicker table tr td.new:not(.active),
+.datepicker table tr td.old:not(.active),
+.datepicker table tr td.new:not(.active):hover,
+.datepicker table tr td.old:not(.active):hover {
+    opacity: 0.7;
+}
+
+.datepicker table tr td.disabled:not(.active),
+.datepicker table tr td.disabled:not(.active):hover,
+.datepicker table tr td span.disabled:not(.active),
+.datepicker table tr td span.disabled:not(.active):hover {
+    opacity: 0.35;
+}
+
+th.dow {
+    font-weight: 600;
+}
+
+.datepicker table tr td span.active.active, .datepicker table tr td span.active.disabled.active, .datepicker table tr td span.active.disabled:active, .datepicker table tr td span.active.disabled:hover.active, .datepicker table tr td span.active.disabled:hover:active, .datepicker table tr td span.active:active, .datepicker table tr td span.active:hover.active, .datepicker table tr td span.active:hover:active,
+.datepicker table tr td.active.active, .datepicker table tr td.active.disabled.active, .datepicker table tr td.active.disabled:active, .datepicker table tr td.active.disabled:hover.active, .datepicker table tr td.active.disabled:hover:active, .datepicker table tr td.active:active, .datepicker table tr td.active:hover.active, .datepicker table tr td.active:hover:active {
+    background: @primary;
+    color: #FFFFFF !important;
+}
+
+@media(max-width:575px) {
+    .datepicker {
+        right: 15px !important;
+        left: 15px !important;
+    }
+
+    .datepicker table {
+        width: 100%;
+    }
+}
+/*DATEPICKER*/
