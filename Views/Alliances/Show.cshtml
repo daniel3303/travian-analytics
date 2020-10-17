@@ -1,10 +1,9 @@
 ﻿@using NonFactors.Mvc.Grid
 @using TravianAnalytics.Extensions
-@using Humanizer
 @using System.Globalization
 @model TravianAnalytics.Models.Alliance
 
-<h4>Aliança: @Model.Name <small>(última atualização @Model.LastUpdate.ToString("dd-MM-yyyy hh:mm")h)</small></h4>
+<h4>Aliança: @Model.Name <small>(última atualização @Model.LastUpdate.ToString("dd-MM-yyyy HH:mm")h)</small></h4>
 
 @(Html
     .Grid(Model.Players.OrderByDescending(p => p.Records.FirstOrDefault()?.Population))

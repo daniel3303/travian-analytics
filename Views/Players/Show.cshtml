@@ -1,6 +1,5 @@
 ﻿@using NonFactors.Mvc.Grid
 @using TravianAnalytics.Extensions
-@using Humanizer
 @using System.Globalization
 @model TravianAnalytics.Models.Player.Player
 
@@ -9,7 +8,7 @@
 @(Html
     .Grid(Model.Records.OrderByDescending(r => r.Time))
     .Build(columns => {
-        columns.Add(model => model.Time.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Data");
+        columns.Add(model => model.Time.ToString("dd-MM-yyyy HH:mm")+"h").Titled("Data");
         columns.Add(model => model.Population).Titled("População");
         columns.Add(model => model.Villages).Titled("Aldeias");
         columns.Add(model => model.Online)

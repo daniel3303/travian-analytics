@@ -40,8 +40,6 @@ namespace TravianAnalytics {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services.AddSingleton(Configuration);
-            var cookieDomain = Configuration.GetSection("Configurations").GetValue<string>("Domain");
-            cookieDomain = cookieDomain.StartsWith("localhost") ? "" : string.Concat(".", cookieDomain);
             var cookieTime = TimeSpan.FromMinutes(Configuration.GetSection("Configurations").GetValue<int>("LoginTime"));
             var cookieSecure = Configuration.GetSection("Configurations").GetValue<bool>("RedirectHttps")
                 ? CookieSecurePolicy.Always
@@ -117,7 +115,6 @@ namespace TravianAnalytics {
             services.AddDistributedMemoryCache();
             services.AddSession(options => {
                 options.Cookie.Name = "SessionCookie";
-                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.IdleTimeout = cookieTime;
 
@@ -144,7 +141,6 @@ namespace TravianAnalytics {
                 options.SuppressXFrameOptionsHeader = false;
                 options.Cookie.Name = "AntiForgeryCookie";
                 options.Cookie.Expiration = cookieTime;
-                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
             });
 
@@ -152,7 +148,6 @@ namespace TravianAnalytics {
             services.Configure<CookieTempDataProviderOptions>(options => {
                 options.Cookie.Name = "TempDataCookie";
                 options.Cookie.Expiration = cookieTime;
-                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
             });
 
@@ -160,7 +155,6 @@ namespace TravianAnalytics {
             services.ConfigureApplicationCookie(options => {
                 options.ExpireTimeSpan = cookieTime;
                 options.Cookie.Name = "AuthCookie";
-                //options.Cookie.Domain = cookieDomain;
                 options.Cookie.SecurePolicy = cookieSecure;
                 options.Events = new CookieAuthenticationEvents {
                     OnRedirectToLogin = ctx => {

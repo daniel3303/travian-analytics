@@ -7,7 +7,7 @@
     .Build(columns => {
         columns.Add(model => model.Name).Titled("Nome");
         columns.Add(model => model.Players.Count).Titled("Jogadores");
-        columns.Add(model => model.LastUpdate.ToString("dd-MM-yyyy hh:mm")+"h").Titled("Última Atualização");
+        columns.Add(model => model.LastUpdate.ToString("dd-MM-yyyy HH:mm")+"h").Titled("Última Atualização");
         columns.AddActions(b => b.AddShow());
     })
     .Using(GridFilterMode.Excel)
