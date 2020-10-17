@@ -59,7 +59,7 @@ const run = async () => {
     }
 
     var now = new Date();
-    if(!(now.getMinutes() % REPORT_INTERVAL * 60 <= LOOP_INTERVAL * 60 * 1.1)){
+    if(!(now.getMinutes() % REPORT_INTERVAL * 60 <= LOOP_INTERVAL * 60 * 2.1)){
         console.log("Waiting for the correct time to report.");
         return;
     }
