@@ -23,7 +23,6 @@ namespace TravianAnalytics.Helpers {
 
             // If the user is an Employee
             if (user.Master) {
-                Console.WriteLine("here");
                 identity.AddClaim(ClaimStore.MasterClaim);
                 foreach (var claim in ClaimStore.ClaimList()
                     .Where(claim => !identity.HasClaim(c => c.Value == claim.Value))) {
