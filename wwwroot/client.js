@@ -108,7 +108,7 @@ const run = async () => {
         console.log(data);
         let now = new Date();
         await save("page_up_to_date", false);
-        await save("last_run", now.getTime()/1000 - now.getMinutes() % REPORT_INTERVAL * 60 - now.getSeconds());
+        await save("last_run", now.getTime()/1000 + REPORT_INTERVAL*60 - now.getMinutes() % REPORT_INTERVAL * 60 - now.getSeconds());
     });
 
 };
