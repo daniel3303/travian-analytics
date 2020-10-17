@@ -20,7 +20,7 @@
 // Units in minutes
 const REPORT_INTERVAL = 30;
 const LOOP_INTERVAL = 2;
-const REPORT_URL = "http://domain.com/api/report";
+const REPORT_URL = "http://142.93.120.166/api/report";
 
 
 const time = () => {
@@ -53,7 +53,7 @@ const run = async () => {
         lastRun = 0;
     }
 
-    if(lastRun > time() + REPORT_INTERVAL * 60 - LOOP_INTERVAL * 60 * 2){
+    if(lastRun + REPORT_INTERVAL > time()){
         console.log("Ignoring. Last report too recent.");
         return;
     }
@@ -105,8 +105,9 @@ const run = async () => {
     $.post(REPORT_URL, json, async function(data){
         console.log("Data reported. Response: ");
         console.log(data);
+        let now = new Date();
         await save("page_up_to_date", false);
-        await save("last_run", time());
+        await save("last_run", now.getTime()/1000 - now.getMinutes() % REPORT_INTERVAL * 60 - now.getSeconds());
     });
 
 };
