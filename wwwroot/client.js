@@ -53,7 +53,7 @@ const run = async () => {
         lastRun = 0;
     }
 
-    if(lastRun > time() - REPORT_INTERVAL * 60 - LOOP_INTERVAL * 60 * 2){
+    if(lastRun > time() + REPORT_INTERVAL * 60 - LOOP_INTERVAL * 60 * 2){
         console.log("Ignoring. Last report too recent.");
         return;
     }
@@ -133,6 +133,7 @@ async function sleep(ms) {
 
 
 (async function () {
+    await run();
     setInterval(async function(){
         await run();
     }, LOOP_INTERVAL * 60 * 1000);
